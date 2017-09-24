@@ -1,9 +1,27 @@
 # quickwx
 
 This project is a little JS hack so that I could see the
-upcoming 10 days of weather data at a glance. Some of the displayed
-items are obvious (icons, etc.) but some might need a bit of
-explanation:
+upcoming 10 days of weather data at a glance.
+
+The HTML/JS grabs a JSON file from its own server for the data
+to display.  The two Python files are what I use to grab the JSON
+files from Weather Underground (with a cron job, every few hours.)
+You will need an API key to grab the JSON, and provide it to the
+Python file when you call it:
+
+```shell
+WU_KEY=<your_key_here> python grabwx.py
+```
+
+You can also pass a parameter to specify the destination directory
+that the JSON file should be written into:
+
+```shell
+WU_KEY=<your_key_here> DEST_DIR=<path_to_dir> python grabwx.py
+```
+
+In the HTML output, some of the displayed items are obvious (icons, etc.)
+but some might need a bit of explanation:
 
 * The three colored numbers are the high temperature, low temperature,
   and average dewpoint for the day.  This, along with the hint given
