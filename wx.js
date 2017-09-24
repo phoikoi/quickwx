@@ -113,11 +113,11 @@ function barParams(hour) {
 function colorbar(day) {
     const pixWidth = 6;
     const pixHeight = 6;
-    const numBars = barParams(day.hours[0]).length;
+    const numTracks = barParams(day.hours[0]).length;
 
     var bar = document.createElement('canvas');
     bar.width = ((day.hours.length) * pixWidth)+2;
-    bar.height = (numBars*pixHeight)+2; 
+    bar.height = (numTracks*pixHeight)+2; 
 
     var ctx = bar.getContext('2d');
     var ctr = 0;
@@ -154,7 +154,7 @@ function divit(txt,classes="") {
 function loadConditions() {
     var container = document.getElementById("container");
     var wx = document.wx;
-    
+
     var days = {};
     for (per of wx.hourly_forecast) {
         if (!days.hasOwnProperty(per.FCTTIME.yday)) {
