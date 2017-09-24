@@ -1,173 +1,97 @@
-function getURLParameter(name) {
-  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-}
+const tempColorRange = [
+    [-10, '#609'],
+    [ 20, '#33c'],
+    [ 45, '#66f'],
+    [ 67, '#39f'],
+    [ 77, '#0c6'],
+    [ 90, '#fc0'],
+    [100, '#f60'],
+    [110, '#f00'],
+    [999, '#c00']
+];
 
-var tempColorMap = function(temp) {
-    if (temp < -10)
-        return '#609';
-    else if (temp < 20)
-        return '#33c';
-    else if (temp < 45)
-        return '#66f';
-    else if (temp < 67)
-        return '#39f';
-    else if (temp < 77)
-        return '#0c6';
-    else if (temp < 90)
-        return '#fc0';
-    else if (temp < 100)
-        return '#f60';
-    else if (temp < 110)
-        return '#f00';
-    else
-        return '#c00';
-}
+const tempSpanRange = [
+    [-10, 'temp-dangercold'],
+    [ 20, 'temp-verycold'],
+    [ 45, 'temp-cold'],
+    [ 67, 'temp-cool'],
+    [ 77, 'temp-comfy'],
+    [ 90, 'temp-warm'],
+    [100, 'temp-hot'],
+    [110, 'temp-veryhot'],
+    [999, 'temp-dangerhot']
+];
 
-let tempSpan = function(tempIn) {
-    let temp = parseInt(tempIn);
-    var kls = "";
-    if (temp < -10)
-        kls="temp-dangercold";
-    else if (temp < 20)
-        kls="temp-verycold";
-    else if (temp < 45)
-        kls="temp-cold";
-    else if (temp < 67)
-        kls="temp-cool";
-    else if (temp < 77)
-        kls="temp-comfy";
-    else if (temp < 90)
-        kls="temp-warm";
-    else if (temp < 100)
-        kls="temp-hot";
-    else if (temp < 110)
-        kls="temp-veryhot";
-    else
-        kls="temp-dangerhot";
-    return `<span class="tempSpan ${kls}">${temp}</span>`;
-}
+const dewpColorRange = [
+    [35, '#add'],
+    [50, '#4dd'],
+    [62, '#0c6'],
+    [70, '#fc0'],
+    [75, '#f60'],
+    [999,'#f00']
+];
 
-var dewpColorMap = function(dewp) {
-    if (dewp < 35)
-        return '#add';
-    else if (dewp < 50)
-        return '#4dd';
-    else if (dewp < 62)
-        return '#0c6';
-    else if (dewp < 70)
-        return '#fc0';
-    else if (dewp < 75)
-        return '#f60';
-    else
-        return '#f00';
-}
+const dewpSpanRange = [
+    [35, "dewp-verydry"],
+    [50, "dewp-dry"],
+    [62, "dewp-comfy"],
+    [70, "dewp-humid"],
+    [75, "dewp-sticky"],
+    [999, "dewp-tropical"]
+];
 
-let dewpSpan = function(dewpIn) {
-    let dewp = parseInt(dewpIn);
-    if (dewp < 35)
-        kls = "dewp-verydry";
-    else if (dewp < 50)
-        kls = "dewp-dry";
-    else if (dewp < 62)
-        kls = "dewp-comfy";
-    else if (dewp < 70)
-        kls = "dewp-humid";
-    else if (dewp < 75)
-        kls = "dewp-sticky";
-    else
-        kls = "dewp-tropical";
-    return `<span class="dewpSpan ${kls}">${dewp}</span>`;
-}
+const windSpeedRange = [
+    [2.0,  '#ffffff'],
+    [5.0,  '#c4e1ed'],
+    [10.0, '#64b9dc'],
+    [15.0, '#64abdc'],
+    [25.0, '#5092dc'],
+    [38.0, '#3572e3'],
+    [50.0, '#41d046'],
+    [60.0, '#97e52b'],
+    [73.0, '#d0fa26'],
+    [96.0, '#ffff11'],
+    [111.0,'#ffbb01'],
+    [130.0,'#ff7901'],
+    [157.0,'#ff3d01'],
+    [999.0,'#a00000']
+];
 
-function divit(txt,classes="") {
-    if (classes !== "") {
-        return `<div class="${classes}">${txt}</div>`;
-    } else {
-        return `<div>${txt}</div>`;
-    }
-}
+const popRange = [
+    [10.0, '#ffffff'],
+    [30.0, '#64b9dc'],
+    [50.0, '#3572e3'],
+    [70.0, '#41d046'],
+    [80.0, '#ffff11'],
+    [90.0, '#ff3d01'],
+    [999,  '#a00000'],
+];
 
-function windColorMap(speed) {
-    windSpeeds = [
-        [2.0,  '#ffffff'],
-        [5.0,  '#c4e1ed'],
-        [10.0, '#64b9dc'],
-        [15.0, '#64abdc'],
-        [25.0, '#5092dc'],
-        [38.0, '#3572e3'],
-        [50.0, '#41d046'],
-        [60.0, '#97e52b'],
-        [73.0, '#d0fa26'],
-        [96.0, '#ffff11'],
-        [111.0,'#ffbb01'],
-        [130.0,'#ff7901'],
-        [157.0,'#ff3d01']
-    ];
+const qpfRange = [
+    [0.01, '#ffffff'],
+    [0.1,  '#dddddd'],
+    [0.25, '#b2def7'],
+    [0.5,  '#5bb6fc'],
+    [0.75, '#1430e9'],
+    [1.0,  '#87fd15']
+    [1.5,  '#4fc519'],
+    [2.0,  '#357237'],
+    [2.5,  '#fdfd07'],
+    [3.0,  '#fcce20'],
+    [4.0,  '#fc9918'],
+    [5.0,  '#f9261b']
+    [6.0,  '#c41c1c'],
+    [8.0,  '#7c0616'],
+    [10.0, '#fe01f9'],
+    [999,  '#8f38c7']
+];
 
-    const offScaleColor = '#a00000';
-
-    var retval = offScaleColor;
-    
-    for (level of windSpeeds) {
-        if (speed<level[0]) {
-            retval = level[1];
-            break;
-        }
-    }
-
-    return retval;
-}
-
-function popColorMap(pop) {
-    pops = [
-        [10.0, '#ffffff'],
-        [30.0, '#64b9dc'],
-        [50.0, '#3572e3'],
-        [70.0, '#41d046'],
-        [80.0, '#ffff11'],
-        [90.0, '#ff3d01']
-    ];
-
-    const offScaleColor = '#a00000';
-
-    var retval = offScaleColor;
-    
-    for (cpop of pops) {
-        if (pop<cpop[0]) {
-            retval = cpop[1];
-            break;
-        }
-    }
-
-    return retval;
-}
-
-function qpfColorMap(qpf) {
-    qpfs = [
-        [0.01, '#ffffff'],
-        [0.1, '#dddddd'],
-        [0.25, '#b2def7'],
-        [0.5, '#5bb6fc'],
-        [0.75, '#1430e9'],
-        [1.0, '#87fd15']
-        [1.5, '#4fc519'],
-        [2.0, '#357237'],
-        [2.5, '#fdfd07'],
-        [3.0, '#fcce20'],
-        [4.0, '#fc9918'],
-        [5.0, '#f9261b']
-        [6.0, '#c41c1c'],
-        [8.0, '#7c0616'],
-        [10.0, '#fe01f9'],
-    ];
-
-    const offScaleColor = '#8f38c7';
-
-    var retval = offScaleColor;
-    
-    for (row of qpfs) {
-        if (qpf<row[0]) {
-            retval = row[1];
+function rangeMap(value, rangeArray) {
+    /* rangeArray must be an array of two-item arrays */
+    var retval;
+    for (rangeItem of rangeArray) {
+        if (value < rangeItem[0]) {
+            retval = rangeItem[1];
             break;
         }
     }
@@ -177,15 +101,14 @@ function qpfColorMap(qpf) {
 
 function barParams(hour) {
     return [
-            tempColorMap(parseInt(hour.temp.english)),
-            dewpColorMap(parseInt(hour.dewpoint.english)),
-            `hsl(${hour.wdir.degrees},100%,50%)`,
-            windColorMap(parseInt(hour.wspd.english)),
-            popColorMap(parseFloat(hour.pop)),
-            qpfColorMap(parseFloat(hour.qpf.english))
+            rangeMap(parseInt(hour.temp.english), tempColorRange),
+            rangeMap(parseInt(hour.dewpoint.english), dewpColorRange),
+            `hsl(${hour.wdir.degrees},100%,50%)`, // wind direction
+            rangeMap(parseInt(hour.wspd.english), windSpeedRange),
+            rangeMap(parseFloat(hour.pop), popRange),
+            rangeMap(parseFloat(hour.qpf.english), qpfRange)
         ];
 }
-
 
 function colorbar(day) {
     const pixWidth = 6;
@@ -220,9 +143,18 @@ function colorbar(day) {
     return bar;
 }
 
+function divit(txt,classes="") {
+    if (classes !== "") {
+        return `<div class="${classes}">${txt}</div>`;
+    } else {
+        return `<div>${txt}</div>`;
+    }
+}
+
 function loadConditions() {
     var container = document.getElementById("container");
     var wx = document.wx;
+    
     var days = {};
     for (per of wx.hourly_forecast) {
         if (!days.hasOwnProperty(per.FCTTIME.yday)) {
@@ -235,6 +167,7 @@ function loadConditions() {
     for (day of wx.forecast.simpleforecast.forecastday) {
         var td = days[`${day.date.yday}`];
         td.day = day;
+
         var dewps = new Array;
         for (hour of td.hours) {
             dewps.push(parseInt(hour.dewpoint.english));
@@ -251,9 +184,14 @@ function loadConditions() {
         
         var wt = divit(`${day.conditions}`,"wt");
         
-        var hi = tempSpan(day.high.fahrenheit);
-        var lo = tempSpan(day.low.fahrenheit);
-        var dp = dewpSpan(dewp);
+        var tempClassText = rangeMap(day.high.fahrenheit, tempSpanRange);
+        var hi = `<span class="tempSpan ${tempClassText}">${day.high.fahrenheit}</span>`;
+        
+        tempClassText = rangeMap(day.low.fahrenheit, tempSpanRange);
+        var lo = `<span class="tempSpan ${tempClassText}">${day.low.fahrenheit}</span>`
+
+        var dewpClassText = rangeMap(dewp, dewpSpanRange);
+        var dp = `<span class="dewpSpan ${dewpClassText}">${dewp}</span>`;
 
         var cbdiv = document.createElement('div');
         cbdiv.classList.add("colorbar");
@@ -266,6 +204,10 @@ function loadConditions() {
         container.appendChild(newdiv);
     }
 };
+
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     var station = getURLParameter('station');
