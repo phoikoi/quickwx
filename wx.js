@@ -2,18 +2,6 @@ function getURLParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 }
 
-/*
-    span.temp-dangercold { background-color: #609; color:#fff; }
-    span.temp-verycold { background-color: #33c; color:#fff; }
-    span.temp-cold { background-color: #66f; color:#fff; }
-    span.temp-cool { background-color:#39f; color:#fff; }
-    span.temp-comfy { background-color:#0c6; color:#fff; }
-    span.temp-warm { background-color:#fc0;}
-    span.temp-hot { background-color:#f60; color:#fff; }
-    span.temp-veryhot { background-color:#f00; color:#fff; }
-    span.temp-dangerhot { background-color:#c00; }
-*/
-
 var tempColorMap = function(temp) {
     if (temp < -10)
         return '#609';
@@ -59,16 +47,6 @@ let tempSpan = function(tempIn) {
     return `<span class="tempSpan ${kls}">${temp}</span>`;
 }
 
-
-/*
-    span.dewp-verydry { background-color:#9cc; }
-    span.dewp-dry { background-color:#3cc; }
-    span.dewp-comfy { background-color:#0c6; color:#fff; }
-    span.dewp-humid { background-color:#fc0;}
-    span.dewp-sticky { background-color:#f60; color:#fff; }
-    span.dewp-tropical { background-color:#f03; color:#fff; }
-*/
-
 var dewpColorMap = function(dewp) {
     if (dewp < 35)
         return '#add';
@@ -110,7 +88,6 @@ function divit(txt,classes="") {
 }
 
 function windColorMap(speed) {
-
     windSpeeds = [
         [2.0,  '#ffffff'],
         [5.0,  '#c4e1ed'],
@@ -138,70 +115,10 @@ function windColorMap(speed) {
         }
     }
 
-    // const stillColor = '#fff';
-    // const stillSpeed = 2.0;
-    // const breezeColor = '#c4e1ed';
-    // const breezeSpeed = 5.0;
-    // const lightWindColor = '#64b9dc';
-    // const lightWindSpeed = 10.0;
-    // const windyColor = '#64abdc';
-    // const windySpeed = 15.0;
-    // const veryWindyColor = '#5092dc';
-    // const veryWindySpeed = 25.0;
-    // const veryVeryWindyColor = '#3572e3';
-    // const tropStorm1Speed = 38.0;
-    // const tropStorm1Color = '#41d046';
-    // const tropStorm2Speed = 50.0;
-    // const tropStorm2Color = '#97e52b';
-    // const tropStorm3Speed = 60.0;
-    // const tropStorm3Color = '#d0fa16';
-    // const cat1Speed = 73.0;
-    // const cat1Color = '#ffff11';
-    // const cat2Speed = 96.0;
-    // const cat2Color = '#ffbb01';
-    // const cat3Speed = 111.0;
-    // const cat3Color = '#ff7901';
-    // const cat4Speed = 130.0;
-    // const cat4Color = '#ff3d01';
-    // const cat5Speed = 157.0;
-    // const cat5Color = '#a00000';
-
-    // if (speed<stillSpeed) {
-    //     retval = stillColor;
-    // } else if (speed<breezeSpeed) {
-    //     retval = breezeColor;
-    // } else if (speed<lightWindSpeed) {
-    //     retval = lightWindColor;
-    // } else if (speed<windySpeed) {
-    //     retval = windyColor;
-    // } else if (speed<veryWindyColor) {
-    //     retval = veryWindyColor;
-    // } else if (speed<tropStorm1Speed) {
-    //     retval = veryVeryWindyColor;
-    // } else if (speed<tropStorm2Speed) {
-    //     retval = tropStorm1Color;
-    // } else if (speed<tropStorm3Speed) {
-    //     retval = tropStorm2Color;
-    // } else if (speed<cat1Speed) {
-    //     retval = tropStorm3Color;
-    // } else if (speed<cat2Speed) {
-    //     retval = cat1Color;
-    // } else if (speed<cat3Speed) {
-    //     retval = cat2Color;
-    // } else if (speed<cat4Speed) {
-    //     retval = cat3Color;
-    // } else if (speed<cat5Speed) {
-    //     retval = cat4Color;
-    // } else {
-    //     retval = cat5Color;
-    // }
-
-//    console.log(speed, retval);
     return retval;
 }
 
 function popColorMap(pop) {
-
     pops = [
         [10.0, '#ffffff'],
         [30.0, '#64b9dc'],
@@ -226,7 +143,6 @@ function popColorMap(pop) {
 }
 
 function qpfColorMap(qpf) {
-
     qpfs = [
         [0.01, '#ffffff'],
         [0.1, '#dddddd'],
@@ -260,7 +176,6 @@ function qpfColorMap(qpf) {
 }
 
 function barParams(hour) {
-    console.log(hour.FCTTIME.pretty, hour.temp);
     return [
             tempColorMap(parseInt(hour.temp.english)),
             dewpColorMap(parseInt(hour.dewpoint.english)),
@@ -310,7 +225,6 @@ function loadConditions() {
     var wx = document.wx;
     var days = {};
     for (per of wx.hourly_forecast) {
-        // console.log(per.FCTTIME.yday);
         if (!days.hasOwnProperty(per.FCTTIME.yday)) {
             days[per.FCTTIME.yday] = { hours: [per] };
         } else {
