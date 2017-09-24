@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
-    <title>Forecast</title>
-<!--    <link href="bootstrap.min.css" rel="stylesheet">
--->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+<title>Forecast</title>
 <style>
 :root {
     font-family: system-ui,
@@ -21,25 +19,9 @@
 }
 
 .fc-row div {
-    align-self: top;
+    align-self: center;
     height:auto;
     margin-bottom:0.5rem;
-}
-
-.fc-day {
-    font-size: 75%;
-    font-weight: 700;
-    height: 100px;
-    min-width: 100px;
-    max-width:200px;
-    margin: 0.5rem 0.25rem;
-    background-color:#eef;
-    padding: 0.25rem 0;
-}
-
-.fc-day div {
-    text-align:center;
-    border:1px solid #000;
 }
 
 .colorbar {
@@ -57,15 +39,9 @@ div.hl {
 
 }
 
-div.wt {
-    grid-area: conditions;
-        justify-self: center;
-
-}
-
 div.ds {
     grid-area: date;
-        justify-self: center;
+    justify-self: center;
 
 }
 
@@ -95,15 +71,10 @@ span.tempSpan, span.dewpSpan {
     font-weight: 700;
     font-size:85%;
 }
-
 </style>
 <div id="container" class="fc-container">
 </div>
-<!--
-    <script src="jquery-3.2.1.slim.min.js"></script>
-    <script src="bootstrap.bundle.min.js"></script>
--->
-    <script src="wx.js"></script>
+<script src="wx.js"></script>
 </body>
 
 </html>
