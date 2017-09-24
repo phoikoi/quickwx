@@ -10,15 +10,18 @@ You will need an API key to grab the JSON, and provide it to the
 Python file when you call it:
 
 ```shell
-WU_KEY=<your_key_here> python grabwx.py
+WU_KEY=<your_key_here> python3.6 grabwx.py
 ```
 
 You can also pass a parameter to specify the destination directory
 that the JSON file should be written into:
 
 ```shell
-WU_KEY=<your_key_here> DEST_DIR=<path_to_dir> python grabwx.py
+WU_KEY=<your_key_here> DEST_DIR=<path_to_dir> python3.6 grabwx.py
 ```
+
+As you might have noticed from the above examples, the Python files
+require Python 3.6 or above, because of the use of `pathlib.Path`.
 
 In the HTML output, some of the displayed items are obvious (icons, etc.)
 but some might need a bit of explanation:
