@@ -3,7 +3,7 @@ from pathlib import Path
 
 import requests
 
-WU_URL = "http://api.wunderground.com/api/{0}/conditions/hourly10day/forecast10day/q/{1}.json"
+WU_URL = "http://api.wunderground.com/api/{0}/hourly10day/forecast10day/q/{1}.json"
 
 def main():
     WUKEY = os.getenv("WUKEY")

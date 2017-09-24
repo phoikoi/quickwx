@@ -6,7 +6,7 @@ import requests
 # Latitude and longitude of Griffith Observatory, Los Angeles
 LAT = "34.118"
 LON = "-118.3"
-WU_URL = "http://api.wunderground.com/api/{0}/conditions/hourly10day/forecast10day/q/{1},{2}.json"
+WU_URL = "http://api.wunderground.com/api/{0}/hourly10day/forecast10day/q/{1},{2}.json"
 
 def main():
     WUKEY = os.getenv("WUKEY")
