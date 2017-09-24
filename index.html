@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+    <title>Forecast</title>
+<!--    <link href="bootstrap.min.css" rel="stylesheet">
+-->
+<style>
+:root {
+    font-family: system-ui,
+            "Segoe UI", "Open Sans", "Helvetica", sans-serif;
+    font-size: 16px;
+}
+
+.fc-row {
+    display:grid;
+    font-size:85%;
+    grid-template-areas: "icon date temps colorbar";
+    grid-template-columns: 22px 5rem 7rem 150px;
+    grid-template-rows: auto;
+}
+
+.fc-row div {
+    align-self: top;
+    height:auto;
+    margin-bottom:0.5rem;
+}
+
+.fc-day {
+    font-size: 75%;
+    font-weight: 700;
+    height: 100px;
+    min-width: 100px;
+    max-width:200px;
+    margin: 0.5rem 0.25rem;
+    background-color:#eef;
+    padding: 0.25rem 0;
+}
+
+.fc-day div {
+    text-align:center;
+    border:1px solid #000;
+}
+
+.colorbar {
+    justify-self: end;
+}
+
+.fc-container {
+    display:flex;
+    flex-direction: column;
+}
+
+div.hl {
+    grid-area: temps;
+    justify-self: center;
+
+}
+
+div.wt {
+    grid-area: conditions;
+        justify-self: center;
+
+}
+
+div.ds {
+    grid-area: date;
+        justify-self: center;
+
+}
+
+div.wi {
+    grid-area: icon;
+}
+
+span.temp-dangercold { background-color: #609; color:#fff; }
+span.temp-verycold { background-color: #33c; color:#fff; }
+span.temp-cold { background-color: #66f; color:#fff; }
+span.temp-cool { background-color:#39f; color:#fff; }
+span.temp-comfy { background-color:#0c6; color:#fff; }
+span.temp-warm { background-color:#fc0;}
+span.temp-hot { background-color:#f60; color:#fff; }
+span.temp-veryhot { background-color:#f00; color:#fff; }
+span.temp-dangerhot { background-color:#c00; }
+
+span.dewp-verydry { background-color:#add; }
+span.dewp-dry { background-color:#4dd; }
+span.dewp-comfy { background-color:#0c6; color:#fff; }
+span.dewp-humid { background-color:#fc0;}
+span.dewp-sticky { background-color:#f60; color:#fff; }
+span.dewp-tropical { background-color:#f03; color:#fff; }
+
+span.tempSpan, span.dewpSpan {
+    padding: 0.1rem 0.25rem;
+    font-weight: 700;
+    font-size:85%;
+}
+
+</style>
+<div id="container" class="fc-container">
+</div>
+<!--
+    <script src="jquery-3.2.1.slim.min.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+-->
+    <script src="wx.js"></script>
+</body>
+
+</html>
