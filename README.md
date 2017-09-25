@@ -23,6 +23,11 @@ WU_KEY=<your_key_here> DEST_DIR=<path_to_dir> python3.6 grabwx.py
 As you might have noticed from the above examples, the Python files
 require Python 3.6 or above, because of the use of `pathlib.Path`.
 
+I have included several example JSON files in the `example-files.zip`
+archive, so you don't have to go get an API key just to see some results.
+They're also useful reference material if one were to decide to make
+some modifications. :)
+
 In the HTML output, some of the displayed items are obvious (icons, etc.)
 but some might need a bit of explanation:
 
