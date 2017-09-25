@@ -120,7 +120,7 @@ function colorbar(day) {
     bar.height = (numTracks*pixHeight)+2; 
 
     var ctx = bar.getContext('2d');
-    var ctr = 0;
+
     const w = pixWidth;
     const h = pixHeight;
     
