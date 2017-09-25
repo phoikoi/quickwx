@@ -1,7 +1,9 @@
 # quickwx
 
 This project is a little JS hack so that I could see the
-upcoming 10 days of weather data at a glance.
+upcoming 10 days of weather data at a glance:
+
+<img src="screenshot.png" />
 
 The HTML/JS grabs a JSON file from its own server for the data
 to display.  The two Python files are what I use to grab the JSON
